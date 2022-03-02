@@ -10,6 +10,7 @@
 * easy content management system for blog
 * rss feed
 * searching
+* tagging in blog
 
 #### sub-domains
 * syrx instance
