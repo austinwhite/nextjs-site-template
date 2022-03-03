@@ -1,25 +1,24 @@
-#### Tech Stack:
-* VueJS
-* --
+# personal_site
 
-#### Color Scheme:
-* inpiration: colors from github profile pic
+## Project setup
+```
+npm install
+```
 
-#### Wants:
-* blog
-* easy content management system for blog
-* rss feed
-* searching
-* tagging in blog
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
 
-#### sub-domains
-* syrx instance
-* mail server (framework tbd)
-* cloud storage (framework tbd)
-* anonaddy instance
+### Compiles and minifies for production
+```
+npm run build
+```
 
-#### Reaseach
-* handling dark and light mode
-* writing mobile friendly and broswer/platform agnonstic code
-* responsive code
-* analytics backend
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
