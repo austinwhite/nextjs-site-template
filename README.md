@@ -1,5 +1,5 @@
 #### Tech Stack:
-* React w/ Create React App (probably)
+* VueJS
 * --
 
 #### Color Scheme:
