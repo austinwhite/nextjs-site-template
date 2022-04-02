@@ -1,6 +1,6 @@
 #### Tech Stack:
-* VueJS
-* --
+* patite vue
+* bootstrap
 
 #### Color Scheme:
 * inpiration: colors from github profile pic
@@ -9,6 +9,8 @@
 * blog
 * easy content management system for blog
 * rss feed
+* mobile friendly
+* dark/light mode agnostic
 * searching
 * tagging in blog
 
