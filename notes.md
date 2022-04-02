@@ -23,5 +23,4 @@
 #### Reaseach
 * handling dark and light mode
 * writing mobile friendly and broswer/platform agnonstic code
-* responsive code
-* analytics backend
+* analytics
