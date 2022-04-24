@@ -1,10 +1,10 @@
-// import Head from 'next/head'
-// import Link from 'next/link'
+import TopNav from "./top-nav"
 
-import TopBar from './topbar'
-
-export default function Layout() {
+export default function Layout({ children }) {
   return (
-    <TopBar />
+    <div>
+      <TopNav />
+      <main>{ children }</main>
+    </div>
   )
 }

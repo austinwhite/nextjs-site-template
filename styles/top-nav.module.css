@@ -1,0 +1,23 @@
+.top-nav {
+  overflow: hidden;
+}
+
+.top-nav a {
+  color: black;
+}
+
+.top-nav a:hover {
+  color: grey;
+}
+
+.top-nav a:active {
+  color: black;
+}
+
+.top-nav-right {
+  float: right;
+}
+
+.top-nav-right a {
+  padding-left: 15px;
+}

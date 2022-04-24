@@ -1,8 +1,9 @@
-import Layout from "../components/layout"
+import TitleBlock from "../components/title-block"
 
 export default function Home() {
   return (
-    <Layout>
-    </Layout>
+    <div>
+      <TitleBlock/> 
+    </div>
   )
 }

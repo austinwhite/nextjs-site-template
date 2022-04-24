@@ -1,0 +1,38 @@
+.container {
+  position: fixed;
+  top: 30%;
+  left: 30%;
+  -webkit-transform: translate(-30%, -30%);
+  transform: translate(-30%, -30%);
+  max-width: 500px;
+  padding-left: min(50px, 5%);
+}
+
+.heading {
+  font-size: 50px;
+  margin: 0px;
+}
+
+.sub-text {
+  font-size: 25px;
+  margin: 0px;
+  padding-top: 5px;
+  color: grey;
+}
+
+.links {
+  padding-top: 12px;
+}
+
+.links a {
+  color: black;
+  padding-right: 10px;
+}
+
+.links a:hover {
+  color: grey;
+}
+
+.links a:active {
+  color: black;
+}
