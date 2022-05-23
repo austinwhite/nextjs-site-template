@@ -4,7 +4,11 @@ import { getSortedPostsData } from '../lib/posts'
 import Link from 'next/link'
 import Date from '../components/date'
 
+<<<<<<< HEAD
 export default function Blog({ allPostsData }) {
+=======
+export default function Blog( allPostsData ) {
+>>>>>>> 1e23e6adb77723a03aabd7e5dae2fd51807a303e
   return (
     <>
       <Head>
