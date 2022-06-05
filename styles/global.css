@@ -1,3 +1,19 @@
 body {
-  margin: 25px;
+  margin: auto;
+  padding: 1.25rem;
+  justify-content: center;
+  max-width: 2560px;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+a:hover {
+  color: grey;
+}
+
+a:active {
+  color: black;
 }

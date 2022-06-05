@@ -6,6 +6,7 @@
   transform: translate(-30%, -30%);
   max-width: 500px;
   padding-left: min(50px, 5%);
+  text-align: left;
 }
 
 .heading {
@@ -25,14 +26,5 @@
 }
 
 .links a {
-  color: black;
   padding-right: 10px;
-}
-
-.links a:hover {
-  color: grey;
-}
-
-.links a:active {
-  color: black;
 }

@@ -3,30 +3,30 @@ import { siteTitle } from '../components/layout'
 import { getSortedPostsData } from '../lib/posts'
 import Link from 'next/link'
 import Date from '../components/date'
+import utilStyles from '../styles/utils.module.css'
 
 export default function Blog({ allPostsData }) {
   return (
-    <>
+    <div className={ utilStyles["page-container"] }>
       <Head>
-        <title>{ siteTitle }</title>
+        <title>Blog</title>
       </Head>
-      <section>
-        <h2>Blog</h2>
-        <ul>
+      <div className={ utilStyles["blog-container"] }>
+        <ul className={ utilStyles["list"] }>
           {allPostsData.map(({ id, date, title }) => (
-            <li key={id}>
-              <Link href={`/posts/${id}`}>
+            <li className={ utilStyles["listItem"] } key={id}>
+              <Link href={ `/posts/${id}` }>
                 <a>{title}</a>
               </Link>
               <br />
-              <small>
-                <Date dateString={date} />
+              <small className={ utilStyles["lightText"] }>
+                <Date dateString={ date } />
               </small>
             </li>
           ))}
         </ul>
-      </section>
-    </>
+      </div>
+    </div>
   )
 }
 
