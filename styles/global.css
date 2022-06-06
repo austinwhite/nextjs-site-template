@@ -3,6 +3,7 @@ body {
   padding: 1.25rem;
   justify-content: center;
   max-width: 2560px;
+  font-family: 'Lato', sans-serif;
 }
 
 a {
