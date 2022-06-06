@@ -1,0 +1,22 @@
+.container {
+  margin: 4rem;
+  display: block;
+}
+
+.container h1 {
+  display: inline-block;
+  font-size: 6.5rem;
+  margin: 4rem;
+}
+
+a:hover#mail {
+  color: #DD5144;
+}
+
+a:hover#github {
+  color: #616161;
+}
+
+a:hover#linkedin {
+  color: #0A66C2;
+}

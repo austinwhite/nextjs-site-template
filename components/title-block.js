@@ -1,5 +1,4 @@
 import Link from "next/link"
-
 import titleStyles from "../styles/title-block.module.css"
 
 export default function TitleBlock() {

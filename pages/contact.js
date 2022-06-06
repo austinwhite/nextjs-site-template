@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import ComingSoon from "../components/coming-soon"
+import ContactBlock from "../components/contact-block"
 
 export default function Contact() {
   return (
@@ -7,7 +7,7 @@ export default function Contact() {
       <Head>
         <title>Contact</title>
       </Head>
-      <ComingSoon text="Contact page" /> 
+      <ContactBlock/>
     </div>
   )
 }
