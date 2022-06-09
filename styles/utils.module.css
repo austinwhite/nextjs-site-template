@@ -9,6 +9,13 @@
   text-align: left;
 }
 
+.blog-content-container {
+  display: inline-block;
+  margin: 2rem;
+  max-width: 1080px;
+  text-align: left;
+}
+
 .hero-image {
   margin: auto;
 }
