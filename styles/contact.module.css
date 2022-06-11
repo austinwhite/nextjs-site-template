@@ -1,13 +1,12 @@
 .container {
-  margin: 4rem;
+  margin-top: 14rem;
   display: block;
 }
 
 .container h1 {
   display: inline-block;
-  font-size: 6rem;
-  margin: 3.7rem;
-  margin-top: 6.5rem;
+  font-size: 6.25rem;
+  margin: 3.5rem;
 }
 
 a:hover#mail {
@@ -15,7 +14,7 @@ a:hover#mail {
 }
 
 a:hover#github {
-  color: #;
+  color: #616161;
 }
 
 a:hover#linkedin {
