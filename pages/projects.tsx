@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import ComingSoon from "../components/coming-soon"
+import ComingSoon from "@/src/components/coming-soon"
 
 export default function Projects() {
   return (

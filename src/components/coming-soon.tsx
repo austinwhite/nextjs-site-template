@@ -1,4 +1,4 @@
-import comingSoonStyles from "../styles/coming-soon.module.css"
+import comingSoonStyles from "@/styles/coming-soon.module.css"
 
 export default function ComingSoon({ text }) {
   return (

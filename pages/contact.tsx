@@ -1,6 +1,6 @@
 import Head from 'next/head'
-import ContactBlock from "../components/contact-block"
-import utilStyles from "../styles/utils.module.css"
+import ContactBlock from "@/src/components/contact-block"
+import utilStyles from "@/styles/utils.module.css"
 
 export default function Contact() {
   return (

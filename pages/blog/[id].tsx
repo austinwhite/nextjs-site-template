@@ -1,9 +1,17 @@
 import { getAllPostIds, getPostData } from "../../lib/posts"
 import Head from "next/head"
-import Date from "../../components/date"
-import utilStyles from "../../styles/utils.module.css"
+import Date from "@/src/components/date"
+import utilStyles from "@/styles/utils.module.css"
 
-export default function Post({ postData }) {
+interface PostData {
+  postData: {
+    title: string
+    date: string
+    conentHtml: string
+  }
+}
+
+export default function Post({ postData }: PostData) {
   return (
     <div className={ utilStyles["page-container"] }>
       <div className={ utilStyles["blog-content-container"] }>

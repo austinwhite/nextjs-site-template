@@ -1,6 +1,6 @@
 import Link from "next/link"
 
-import navStyles from "../styles/top-nav.module.css"
+import navStyles from "@/styles/top-nav.module.css"
 
 export default function TopNav() {
   return (

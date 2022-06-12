@@ -1,5 +1,5 @@
 import Link from "next/link"
-import contactStyles from "../styles/contact.module.css"
+import contactStyles from "@/styles/contact.module.css"
 import { AiOutlineMail, AiOutlineGithub, AiOutlineLinkedin } from "react-icons/ai"
 
 export default function TitleBlock() {
