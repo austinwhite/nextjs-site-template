@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import utilStyles from "@/src/styles/utils.module.css"
+import utilStyles from "@/styles/utils.module.css"
 import Image from 'next/image'
 
 export default function Home() {
