@@ -15,15 +15,15 @@ interface MDXPost {
   meta: PostMeta
 }
 
-export default function Post({ post }: { post: MDXPost }) {
+export default function BlogPost({ post }: { post: MDXPost }) {
   return (
     <div>
       <div>
         <Head>
-          <title>{post.meta.title}</title>
+          <title>{ post.meta.title }</title>
         </Head>
-        <h1>{post.meta.title}</h1>
-        <MDXRemote {...post.source} components={{YouTube, Image}}/>
+        <h1>{ post.meta.title }</h1>
+        <MDXRemote { ...post.source } components={ { YouTube, Image } }/>
       </div>
     </div>
   )
@@ -36,7 +36,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     mdxOptions: {
       rehypePlugins: [
         rehypeSlug,
-        [rehypeAutolinkHeadings, {behavior: "wrap"}],
+        [rehypeAutolinkHeadings, { behavior: "wrap" }],
         rehypeHighlight
       ]
     }
@@ -46,7 +46,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = getSlugs().map(slug => ({params: {slug}}))
+  const paths = getSlugs().map(slug => ({ params: { slug } }))
   
   return {
     paths,

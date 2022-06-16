@@ -1,13 +1,35 @@
 import { getAllPosts, PostMeta } from "@/src/api"
-import Articles from "@/src/components/articles"
+import Link from "next/link"
+import BlogPosts from "@/src/components/blog-posts"
 
-export default function Blog( { posts }: { posts: PostMeta[] }) {
+const active_tags = new Map() 
+
+export default function Blog( { posts, tags }: { posts: PostMeta[], tags: string[] }) {
+  const handleClick = (tag: string) => {
+    if (active_tags.has(tag)) {
+      active_tags.delete(tag)
+    } else {
+      active_tags.set(tag, true)
+    }
+    console.log(active_tags)
+  }
+
   return (
     <>
-      <h1>Blog</h1>
-      <Articles posts={ posts }/>
+      <BlogPosts posts={ posts }/>
+      <ul>
+        { tags.map((tag) => (
+          <li key={ tag }>
+            <Link href={ `/tags/${ tag }` }>
+              <a onClick={ () => {
+                handleClick(tag)
+              }}>{ tag }</a>
+            </Link>
+          </li>
+        ))}
+      </ul>
     </>
-  );
+  )
 }
 
 export async function getStaticProps() {
@@ -15,5 +37,7 @@ export async function getStaticProps() {
     .slice(0, 9)
     .map((post) => post.meta);
 
-  return { props: { posts } }
+  const tags = Array.from(new Set(posts.map((post) => post.tags).flat()))
+
+  return { props: { posts, tags } }
 }
