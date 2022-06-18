@@ -16,6 +16,7 @@ export interface PostMeta {
   slug: string
   title: string
   tags: string[]
+  hidden: boolean
   date: string
 }
 
@@ -53,6 +54,7 @@ export const getPostFromSlug = (slug: string): Post => {
       exerpt: data.exerpt ?? "",
       title: data.title ?? slug,
       tags: (data.tags ?? []).sort(),
+      hidden: false,
       date: (data.date ?? new Date()).toString(),
     }
   }

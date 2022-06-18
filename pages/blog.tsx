@@ -1,18 +1,31 @@
 import { getAllPosts, PostMeta } from "@/src/api"
 import Link from "next/link"
+import React, { useState, useEffect } from "react"
 import BlogPosts from "@/src/components/blog-posts"
 
-const active_tags = new Map() 
 
 export default function Blog( { posts, tags }: { posts: PostMeta[], tags: string[] }) {
+  const [activeTags, setActiveTags] = useState(new Map<string, boolean>())
+
   const handleClick = (tag: string) => {
-    if (active_tags.has(tag)) {
-      active_tags.delete(tag)
+    if (activeTags.has(tag)) {
+      activeTags.delete(tag)
     } else {
-      active_tags.set(tag, true)
+      activeTags.set(tag, true)
     }
-    console.log(active_tags)
+    setActiveTags(activeTags)
   }
+
+  useEffect(() => {
+    console.log(activeTags)
+    posts.forEach((post) => post.tags.forEach((tag) => {
+      if (activeTags.has(tag)) {
+        post.hidden = true
+      } else {
+        post.hidden = false
+      }
+    }))
+  })
 
   return (
     <>
@@ -20,7 +33,7 @@ export default function Blog( { posts, tags }: { posts: PostMeta[], tags: string
       <ul>
         { tags.map((tag) => (
           <li key={ tag }>
-            <Link href={ `/tags/${ tag }` }>
+            <Link href={"#"}>
               <a onClick={ () => {
                 handleClick(tag)
               }}>{ tag }</a>
