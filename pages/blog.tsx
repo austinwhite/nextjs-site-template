@@ -1,11 +1,10 @@
 import { getAllPosts, PostMeta } from "@/src/api"
 import Link from "next/link"
 import React, { useState, useEffect } from "react"
-import BlogPosts from "@/src/components/blog-posts"
-
 
 export default function Blog( { posts, tags }: { posts: PostMeta[], tags: string[] }) {
   const [activeTags, setActiveTags] = useState(new Map<string, boolean>())
+  const [filteredPosts, setFilteredPosts] = useState(posts)
 
   const handleClick = (tag: string) => {
     if (activeTags.has(tag)) {
@@ -18,30 +17,55 @@ export default function Blog( { posts, tags }: { posts: PostMeta[], tags: string
 
   useEffect(() => {
     console.log(activeTags)
-    posts.forEach((post) => post.tags.forEach((tag) => {
-      if (activeTags.has(tag)) {
-        post.hidden = true
-      } else {
-        post.hidden = false
-      }
-    }))
-  })
+    posts.forEach((post) => (
+      post.tags.forEach((tag) => {
+        if (activeTags.has(tag)) {
+          post.hidden = true
+        } else {
+          post.hidden = false
+        }
+      }))
+    )
+
+    if (activeTags.size == 0) {
+      setFilteredPosts(posts)
+    } else {
+      setFilteredPosts((
+        posts.filter((post) => post.tags.some(
+          (tag) => activeTags.has(tag)
+        ))
+      ))
+    }
+  }, [posts])
 
   return (
-    <>
-      <BlogPosts posts={ posts }/>
-      <ul>
-        { tags.map((tag) => (
-          <li key={ tag }>
-            <Link href={"#"}>
-              <a onClick={ () => {
-                handleClick(tag)
-              }}>{ tag }</a>
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </>
+    <div>
+      <div>
+        <ul>
+          { filteredPosts.map((post) => (
+            <li key={ post.slug }>
+              <Link href={ `/blog/${ post.slug }` }>
+                { post.title }
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <ul>
+          { tags.map((tag) => (
+            <li key={ tag }>
+              <Link href={"#"}>
+                <a onClick={ () => {
+                  handleClick(tag)
+                }}>{ tag }</a>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
   )
 }
 
