@@ -1,10 +1,10 @@
 .container {
   margin-top: 14rem;
-  display: block;
+  display: flex;
+  justify-content: center;
 }
 
 .container h1 {
-  display: inline-block;
   font-size: 6.25rem;
   margin: 3.5rem;
 }

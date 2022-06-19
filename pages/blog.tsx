@@ -7,6 +7,7 @@ import utilStyles from "@/styles/utils.module.css"
 
 export default function Blog( { posts, tags }: { posts: PostMeta[], tags: string[] }) {
   const [activeTags, setActiveTags] = useState(new Map<string, boolean>())
+  const [tagUpdateCount, setTagUpdateCount] = useState(0)
   const [filteredPosts, setFilteredPosts] = useState(posts)
 
   const handleClick = (tag: string) => {
@@ -16,6 +17,7 @@ export default function Blog( { posts, tags }: { posts: PostMeta[], tags: string
       activeTags.set(tag, true)
     }
     setActiveTags(activeTags)
+    setTagUpdateCount(tagUpdateCount +  1)
   }
 
   const formatDate = (date: string): string => {
@@ -28,7 +30,6 @@ export default function Blog( { posts, tags }: { posts: PostMeta[], tags: string
   }
 
   useEffect(() => {
-    console.log(activeTags)
     if (activeTags.size == 0) {
       setFilteredPosts(posts)
     } else {
@@ -38,29 +39,31 @@ export default function Blog( { posts, tags }: { posts: PostMeta[], tags: string
         ))
       ))
     }
-  }, [posts])
+  }, [tagUpdateCount])
 
   return (
     <div className={ utilStyles["page-container"] }>
       <Head>
         <title>Blog</title>
       </Head>
-      <div className={ blogStyles["posts-selection"] }>
-        <div className={ blogStyles["tags-list"]}>
+      <div className={ blogStyles["posts-selection-container"] }>
+        <div className={ blogStyles["tags-list-container"]}>
           <ul className={ blogStyles["list"] }>
             { tags.map((tag) => (
-              <li key={ tag } className={ blogStyles["listItem"] }>
-                <Link href={"#"}>
-                  <a onClick={ () => {
-                    handleClick(tag)
-                  }}>{ tag }</a>
-                </Link>
+              <li key={ tag } className={ blogStyles["tagListItem"] }>
+                <div className={ blogStyles[activeTags.has(tag) ? "tagItemActive" : "tagItem"] }>
+                  <Link href={"#"}>
+                    <a onClick={ () => {
+                      handleClick(tag)
+                    }}>{ tag }</a>
+                  </Link>
+                </div>
               </li>
             ))}
           </ul>
         </div>
 
-        <div className={ blogStyles["posts-list"] }>
+        <div className={ blogStyles["posts-list-container"] }>
           <ul className={ blogStyles["list"] }>
             { filteredPosts.map((post) => (
               <li key={ post.slug } className={ blogStyles["listItem"] }>
