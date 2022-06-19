@@ -10,14 +10,24 @@ export default function Blog( { posts, tags }: { posts: PostMeta[], tags: string
   const [tagUpdateCount, setTagUpdateCount] = useState(0)
   const [filteredPosts, setFilteredPosts] = useState(posts)
 
-  const handleClick = (tag: string) => {
+  const handleTagClick = (tag: string) => {
     if (activeTags.has(tag)) {
       activeTags.delete(tag)
     } else {
       activeTags.set(tag, true)
     }
+
+    if (activeTags.size == tags.length) {
+      activeTags.clear()
+    }
+
     setActiveTags(activeTags)
     setTagUpdateCount(tagUpdateCount +  1)
+  }
+
+  const handleTopClick = () => {
+    activeTags.clear()
+    setTagUpdateCount(tagUpdateCount + 1)
   }
 
   const formatDate = (date: string): string => {
@@ -27,6 +37,13 @@ export default function Blog( { posts, tags }: { posts: PostMeta[], tags: string
     const year = 3
 
     return parts[month] + " " + parts[day] + ", " + parts[year]
+  }
+
+  const highlightTopItem = (): boolean => {
+    if (activeTags.size == 0) {
+      return true
+    }
+    return false
   }
 
   useEffect(() => {
@@ -49,20 +66,32 @@ export default function Blog( { posts, tags }: { posts: PostMeta[], tags: string
       <div className={ blogStyles["posts-selection-container"] }>
         <div className={ blogStyles["tags-list-container"]}>
           <ul className={ blogStyles["list"] }>
+            <li className={ blogStyles["tagListItem"] }>
+              <div className={
+                blogStyles[highlightTopItem() ? "tagItemActive" : "tagItem"]
+              }>
+                <Link href={"#"}>
+                  <a onClick={ () => {
+                    handleTopClick()
+                  }}>all categories</a>
+                </Link>
+              </div>
+            </li>
             { tags.map((tag) => (
               <li key={ tag } className={ blogStyles["tagListItem"] }>
-                <div className={ blogStyles[activeTags.has(tag) ? "tagItemActive" : "tagItem"] }>
+                <div className={
+                  blogStyles[activeTags.has(tag) ? "tagItemActive" : "tagItem"]
+                }>
                   <Link href={"#"}>
                     <a onClick={ () => {
-                      handleClick(tag)
-                    }}>{ tag }</a>
+                      handleTagClick(tag)
+                    }}>{ tag.toLowerCase() }</a>
                   </Link>
                 </div>
               </li>
-            ))}
+            )) }
           </ul>
         </div>
-
         <div className={ blogStyles["posts-list-container"] }>
           <ul className={ blogStyles["list"] }>
             { filteredPosts.map((post) => (
@@ -88,7 +117,9 @@ export async function getStaticProps() {
     .slice(0, 9)
     .map((post) => post.meta);
 
-  const tags = Array.from(new Set(posts.map((post) => post.tags).flat()))
+  const tags = Array.from(new Set(posts.map((post) => 
+    post.tags).flat()
+  ))
 
   return { props: { posts, tags } }
 }
