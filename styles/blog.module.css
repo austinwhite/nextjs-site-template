@@ -1,0 +1,41 @@
+.post-content-container {
+  display: inline-block;
+  margin: 2rem;
+  max-width: 1080px;
+  text-align: left;
+}
+
+.posts-selection {
+  display: flex;
+  justify-content: center;
+}
+
+.posts-list {
+  margin: 2rem 0rem;
+  text-align: left;
+  width: 32rem;
+  margin-right: auto;
+  padding-left: 2rem;
+}
+
+.tags-list {
+  margin: 2rem 0rem;
+  text-align: right;
+  margin-left: auto;
+  padding-right: 2rem;
+  border-right: 3px solid black;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.listItem {
+  margin: 0.5rem 0 1rem;
+}
+
+.lightText {
+  color: #666;
+}

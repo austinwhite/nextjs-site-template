@@ -9,6 +9,8 @@ import rehypeHighlight from "rehype-highlight"
 import { getPostFromSlug, getSlugs, PostMeta } from "@/src/api"
 import YouTube from "@/src/components/youtube"
 import "highlight.js/styles/github.css"
+import blogStyles from "@/styles/blog.module.css"
+import utilStyles from "@/styles/utils.module.css"
 
 interface MDXPost {
   source: MDXRemoteSerializeResult<Record<string, unknown>>
@@ -17,8 +19,8 @@ interface MDXPost {
 
 export default function BlogPost({ post }: { post: MDXPost }) {
   return (
-    <div>
-      <div>
+    <div className={ utilStyles["page-container"] }>
+      <div className={ blogStyles["post-content-container"] }>
         <Head>
           <title>{ post.meta.title }</title>
         </Head>

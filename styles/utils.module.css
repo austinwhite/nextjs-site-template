@@ -3,33 +3,6 @@
   text-align: center;
 }
 
-.blog-container {
-  margin-top: 3rem;
-  display: inline-block;
-  text-align: left;
-}
-
-.blog-content-container {
-  display: inline-block;
-  margin: 2rem;
-  max-width: 1080px;
-  text-align: left;
-}
-
 .hero-image {
   margin: auto;
-}
-
-.list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.listItem {
-  margin: 0 0 1.25rem;
-}
-
-.lightText {
-  color: #666;
 }
