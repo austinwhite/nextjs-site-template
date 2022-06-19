@@ -34,8 +34,8 @@ export const getAllPosts = (): Post[] => {
   const posts = getSlugs()
     .map(slug => getPostFromSlug(slug))
     .sort((a, b) => {
-      if (a.meta.date > b.meta.date) return 1
-      if (a.meta.date < b.meta.date) return -1
+      if (a.meta.date > b.meta.date) return -1
+      if (a.meta.date < b.meta.date) return 1
       return 0
   })
   return posts
