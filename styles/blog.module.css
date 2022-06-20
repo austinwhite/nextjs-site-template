@@ -1,7 +1,8 @@
 .post-content-container {
-  display: inline-block;
-  margin: 2rem;
-  max-width: 1080px;
+  display: inline-flexbox;
+  justify-content: center;
+  margin: 4rem auto;
+  max-width: 65rem;
   text-align: left;
 }
 

@@ -1,12 +1,15 @@
 .container {
-  margin-top: 14rem;
   display: flex;
+  margin: 15% auto;
+  flex-wrap: wrap;
+  flex-direction: row;
   justify-content: center;
+  border: 1px solid black;
 }
 
 .container h1 {
   font-size: 6.25rem;
-  margin: 3.5rem;
+  margin: 3rem;
 }
 
 a:hover#mail {
