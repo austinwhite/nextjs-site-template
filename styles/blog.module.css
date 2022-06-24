@@ -55,6 +55,6 @@
 .tagItemActive {
   display: inline-block;
   padding: 4px;
-  border-radius: 0.5rem;
+  border-radius: 0.35rem;
   background-color: #C6DCE4;
 }
