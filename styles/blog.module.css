@@ -6,6 +6,19 @@
   text-align: left;
 }
 
+.post-content-container a {
+  text-decoration: underline;
+}
+
+.post-content-container h2 a {
+  color: black;
+  text-decoration: none;
+}
+
+.post-content-container a:hover {
+  color: grey;
+}
+
 .posts-selection-container {
   display: flex;
   justify-content: center;
