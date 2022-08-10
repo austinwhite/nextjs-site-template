@@ -9,11 +9,12 @@ date: 2022-08-09
 excerpt: put the exerpt here
 ---
 
-The following is summarized from the book: Crafting Interpreters by Robert Nystrom
+<small>*The following is summarized from the book: Crafting Interpreters by 
+<a href="https://stuffwithstuff.com" target="_blank">Robert Nystrom</a>*</small>
 
 <Image src="/posts/tmpname/programmingLangs.svg" width={3440} height={1440} />
 
-# Scanning
+## Scanning
 The first job of the interpreter is scanning, also known as lexing (or 
 lexical analysis). The scanner injests source code as a linear stream of
 characters and groups them together into what's reffered to a 'token'.
@@ -47,7 +48,7 @@ matter how small. Open source tools have been created that can take a
 predefined grammer and output a fully functioning scanner. See 
 https://github.com/westes/flex
 
-# Parsing
+## Parsing
 The parser give the languge it's sytax using rules outlines in the laguges
 'grammar'. Much like in linguistic languages, the grammer dictats how words
 (tokens for us) link together to form coherent expressions and statements.
@@ -60,7 +61,7 @@ Abstract Syntax Tree (AST).
 During the construction of this AST, the interpreter will find and report
 any syntax errors that exist.
 
-# Static analysis
+## Static analysis
 At this point we know the syntactic structure of the code but we don't 
 know much more.
 
@@ -87,7 +88,7 @@ with final archetecture where the code will run. In the time since these
 terms were coined new techniques have arison to make the backends job easier,
 these techniques are groups together and called the 'middle end'.
 
-# Intermediate representations
+## Intermediate representations
 A compiler is essentially a pipeline where each successage stage's job is to 
 make the next stage easier to implement. 
 
@@ -100,7 +101,7 @@ and "three-address code".
 Utlizing IR to mix and match front ends and back ends is how compilers
 like GCC are able to support so many differnt languages and archetectures.
 
-# Optimization
+## Optimization
 Transforming the code into an intermediate representatino also makes 
 optimizatinos far easier to carry out.
 
@@ -115,7 +116,7 @@ would be replaced with:
 float pennyArea = 0.4417860938
 ```
 
-# Code generation
+## Code generation
 In this step we generate the instruction primatives that will be run by the
 CPU. This is officially the 'back end'. 
 
@@ -131,7 +132,7 @@ hypothecial machine. It's called bytecode becuase each instructino is usually
 a single byte long. This code will then run on a virtual machine, the user
 will be none the wiser.
 
-# Virtual machine
+## Virtual machine
 There's no real chip that speaks in 'bytecode', you'll need to translate it.
 There are again two paths to choose from, you can write a mini compiler for 
 earch archetecure you'd like to support that converts the bytecode to native
@@ -144,7 +145,7 @@ emulates the affomentinoed hypothetical chip. This option is significnalty
 slower than runnign native code, however it comes with simplicity and 
 portability.
 
-# Runtime
+## Runtime
 It's time to run the compiled program. If we compiled down to native machine 
 code, you can just tell your OS to run the program, if we went the VM route, 
 you'll need to start up the VM and load the program into it.
