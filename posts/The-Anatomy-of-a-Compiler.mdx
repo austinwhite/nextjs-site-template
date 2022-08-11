@@ -19,16 +19,17 @@ excerpt: The high-level archetecture of a modern compiler.
   
 ## Scanning
 The first job of the interpreter is scanning, also known as lexing (or 
-lexical analysis). The scanner injests source code as a linear stream of
-characters and groups them together into what's reffered to a 'token'.
-Some tokens are a single character (i.e. \{ and ,) while other can be several
-character long, such as string literals ("hi"), numbers (123), and
+lexical analysis). The **scanner** injests the source code as a stream of 
+raw characters and chunks them together to for tokens. A **token** is a 
+group of characters (of size n >= 1) that have a collective meaning.
+
+Some tokens are a single character (i.e. \{ and ,) while others can be several
+character long, such as numbers (123), string literals ("hi"), and
 identifiers (min). 
 
-Some characters from the source code don't have any
-significace to the scanner such as whitespace and comments. These things
-are only usefull to the programmer so the interpreter will typically 
-ignore them.
+Some characters from the source code don't have any significace to the
+scanner such as whitespace and comments. These things are only usefull to 
+the programmer, the interpreter will typically ignore them.
 
 ```c
 float avg = (min + max) / 2;
@@ -46,18 +47,18 @@ The statement above would result in the following tokens:
 - 2
 - ;
 
-Scanning is a ubiqitous task done for every new language that pops up, no 
-matter how small. Open source tools have been created that can take a 
-predefined grammer and output a fully functioning scanner. See 
-https://github.com/westes/flex
+Scanning is a ubiqitous task done for every language. Open source tools have 
+been created that take a predefined grammer and output a fully 
+functioning scanner. See [flex](https://github.com/westes/flex)
 
 ## Parsing
-The parser give the languge it's sytax using rules outlines in the laguges
-'grammar'. Much like in linguistic languages, the grammer dictats how words
-(tokens for us) link together to form coherent expressions and statements.
+The parser provides the language with it's sytax by utilizeing rules outlined 
+in the languages **grammar**. Much like in linguistic languages, the grammer
+dictats how words (tokens) will link together to form coherent expressions 
+and statements.
 
 The parser takes a flat sequnce of tokens, and constructs them into an
-Abstract Syntax Tree (AST).
+**Abstract Syntax Tree (AST)**.
 
 <Image src="/posts/The-Anatomy-of-a-Compiler/AST.svg"
     width={3440}
@@ -65,54 +66,61 @@ Abstract Syntax Tree (AST).
 />
 
 During the construction of this AST, the interpreter will find and report
-any syntax errors that exist.
+any syntax errors.
 
 ## Static analysis
-At this point we know the syntactic structure of the code but we don't 
-know much more.
+At this point we know the syntactic structure of the code but that's it.
 
-For example, for the expression a + b, we know that we're adding a and b,
-but what does a and b refer to? Which scope do they belong to a?
+For example, given the expression *a + b* we know that we're adding *a* and 
+*b*, but what do *a* and *b* refer to? How are they defined, what scope do 
+they belong to?
 
-The first part of analysis is called 'binding'. For each identifier we find
+The first part of analysis is called **binding**. For each identifier we find
 out where it's defined, then we can connect the name to it's defininition.
 This is also were we resolve the scope of each identifier and ensure that
-it's being respected, otherwise we'll throw an error.
+it's being respected, if it isn't we'll throw an error.
 
 In the case of a statically typed language, we'll also determine if the types
 of the values being added support it. If not, we'll throw an error.
 
-The definitinons and type are often stored back into the tree as 'attributes'.
-Another method is to store the attributes in a seperate lookup table, where
-the identifiers act as the keys. Howver the most powerful method is to 
-transform the tree into an entirly new data structure, an Intermediate
-representation. This is covered in the next section.
+The defininitions and types are often stored back on the tree in the form 
+of attributes or in a seperate lookup table using the identifiers as keys. 
+If an even more powerful form of bookkeyping is required, one may transform 
+the tree into an entirly new data structure called an Intermedite 
+Representation (IR). This will be coverd in the next section.
 
-Everything up to this point is reffered as the language 'front end'. This 
-is where all the language specifics are handled, the 'back end' is concerned 
-with final archetecture where the code will run. In the time since these 
-terms were coined new techniques have arison to make the backends job easier,
-these techniques are groups together and called the 'middle end'.
+Everything up to this point is referred to as the language's **front end**.
+This is where all of the language specics occur. From this terminology you 
+probably deduced that the language also has a back end. The language's 
+**back end** is concerned with the final archetecure where the code will run.
+This terminology was coined long ago, in the time since then modern 
+techniques have been developed to make connecting this pipeline easier and 
+more flexible. These techniques exist in the **middle end** (try not to 
+to think to hard about that name).
 
 ## Intermediate representations
-A compiler is essentially a pipeline where each successage stage's job is to 
-make the next stage easier to implement. 
+A compiler is essentially a pipeline where each stage's primary job is to 
+transform the data in such a way that the next stage is easier to implement.
 
-The Intermediate represention (IR) is part of the middle end. This is a 
-standardized representaion of the data that allows you to mix and match
-different front ends and back ends. There are many standards, see 
-"control flow graph", "static single-assignment", "continuation-passing style",
-and "three-address code".
+The **Intermediate represention (IR)** is part of the middle end. Esentially, 
+it's a standardized representaion of the data that enables you to mix and match
+different front ends and back ends. This way you could reduce your work load 
+significantly by reusing parts of the pipeline, or you can elimnate work 
+entirly by utilizing pre-written backends for a large swoth or archetectures.
+Many standards exist, see "control flow graph", "static single-assignment",
+"continuation-passing style", and "three-address code".
 
 Utlizing IR to mix and match front ends and back ends is how compilers
 like GCC are able to support so many differnt languages and archetectures.
 
 ## Optimization
-Transforming the code into an intermediate representatino also makes 
-optimizatinos far easier to carry out.
+Another component of the middle end, optimizations can be applied to the IR 
+in order to make the code more efficient once it's compiiled down to it's 
+final execution form.
 
-for example, we could execture the following during compilatino and replace
-every instance of pennyArea with a discrete value.
+For example, we could execute the following during compilation and replace
+each instance of *pennyArea* with a discrete value making the program more 
+effient at runtime.
 
 ```c
 float pennyArea = 3.14159 * (0.75 / 2) * (0.75 / 2);
@@ -124,36 +132,35 @@ float pennyArea = 0.4417860938
 
 ## Code generation
 In this step we generate the instruction primatives that will be run by the
-CPU. This is officially the 'back end'. 
+CPU. This is officially where the back end begins.
 
-There are ultimatly two paths one can take, do you wan't to generate 
-code to run nativly on a real CPU, or code that will run with in a container
-on a virtual CPU? Compiling down to a real CPU results in the fastest program,
-but this can be a highly involved task due to the complex (some might say
-bloated) nature of modern CPU archetecures.
+There are ultimatly two paths one can take, do you wan't to generate code 
+that will run nativly on a real CPU, or code that will run within a container
+on a virtual CPU? Compiling down to a real CPU results in the fastest execution
+but can be a highly involved task due to the complex nature of 
+modern CPU archetecures. 
 
-There's another option, compiling to bytecode. This is virtual machine code,
+There's another option, compiling to **bytecode**. This is virtual machine code,
 instead of instructions that will run on a real chip, this code is for a 
-hypothecial machine. It's called bytecode becuase each instructino is usually
-a single byte long. This code will then run on a virtual machine, the user
-will be none the wiser.
+hypothecial (idealized) machine. It's called bytecode becuase each instruction 
+is usually a single byte long. This code will then run on a virtual machine.
 
 ## Virtual machine
-There's no real chip that speaks in 'bytecode', you'll need to translate it.
-There are again two paths to choose from, you can write a mini compiler for 
-earch archetecure you'd like to support that converts the bytecode to native
-code, you'll have to do this for every chip you support but you'll get to reuse 
-the rest of the compiler pipeline accross all the machines you support. here
-you're essentially using the bytecode as your IR.
+There's no real chip that speaks in bytecode, we'll need to translate it.
+There are again two paths to choose from, we can write a mini compiler for 
+earch archetecure we'd like to support that converts the bytecode to native
+code, this will have to be done for every chip that needs to be supported but 
+we'll get to reuse the rest of the compiler pipeline accross all the machines 
+we support. Here, the bytecode is essentially being used an an IR.
 
-The other option is wrte a 'virtual machine' (VM). This is a program which 
+The other option is wrte a **virtual machine (VM)**. This is a program which 
 emulates the affomentinoed hypothetical chip. This option is significnalty
-slower than runnign native code, however it comes with simplicity and 
-portability.
+slower than running native code, however it offeres the upsides of being 
+much more simple and portable.
 
 ## Runtime
-It's time to run the compiled program. If we compiled down to native machine 
-code, you can just tell your OS to run the program, if we went the VM route, 
+It's time to run the compiled program. If you compiled down to native machine 
+code, you can just tell your OS to run the program, if you went the VM route 
 you'll need to start up the VM and load the program into it.
 
 In both cases there will be services that run alongside the executing program 
