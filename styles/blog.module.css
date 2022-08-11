@@ -33,9 +33,9 @@
 }
 
 .posts-list-container {
+  flex: 0 0 auto;
   margin: 2rem 0rem;
   text-align: left;
-  width: 32rem;
   margin-right: auto;
   padding-left: 2rem;
 }
