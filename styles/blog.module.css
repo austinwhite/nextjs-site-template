@@ -15,10 +15,8 @@
   text-decoration: none;
 }
 
-@media (hover: hover) {
-  .post-content-container a:hover {
-    color: grey;
-  }
+.post-content-container.hasHover a:hover {
+  color: grey;
 }
 
 .posts-selection-container {
