@@ -11,8 +11,10 @@ a {
   text-decoration: none;
 }
 
-a:hover {
-  color: grey;
+@media (hover: hover) {
+  a:hover {
+    color: grey;
+  }
 }
 
 a:active {

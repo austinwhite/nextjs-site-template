@@ -15,10 +15,6 @@
   text-decoration: none;
 }
 
-.post-content-container.hasHover a:hover {
-  color: grey;
-}
-
 .posts-selection-container {
   display: flex;
   justify-content: center;

@@ -8,10 +8,6 @@
   color: black;
 }
 
-.top-nav a:hover {
-  color: grey;
-}
-
 .top-nav-left {
   float: left;
 }
