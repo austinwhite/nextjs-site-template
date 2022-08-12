@@ -15,7 +15,7 @@
   text-decoration: none;
 }
 
-.post-content-container a:hover {
+body.hasHover .post-content-container a:hover {
   color: grey;
 }
 
