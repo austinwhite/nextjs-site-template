@@ -1,14 +1,19 @@
 .container {
   display: flex;
-  margin: 15% auto;
-  flex-wrap: wrap;
+  margin: 10rem auto;
   flex-direction: row;
   justify-content: center;
 }
 
 .container h1 {
   font-size: 6.25rem;
-  margin: 3rem;
+  margin: auto 1.25rem;
+}
+
+@media screen and (max-width:990px) {
+  .container {
+    flex-direction: column;
+  }
 }
 
 @media (hover: hover) {
