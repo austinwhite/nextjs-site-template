@@ -11,14 +11,16 @@
   margin: 3rem;
 }
 
-a:hover#mail {
-  color: #DD5144;
-}
+@media (hover: hover) {
+  a:hover#mail {
+    color: #DD5144;
+  }
 
-a:hover#github {
-  color: #3B3B3B;
-}
+  a:hover#github {
+    color: #3B3B3B;
+  }
 
-a:hover#linkedin {
-  color: #0A66C2;
+  a:hover#linkedin {
+    color: #0A66C2;
+  }
 }
