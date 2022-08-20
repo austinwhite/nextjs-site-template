@@ -6,6 +6,8 @@ import { serialize } from "next-mdx-remote/serialize"
 import rehypeSlug from "rehype-slug"
 import rehypeAutolinkHeadings from "rehype-autolink-headings"
 import rehypeHighlight from "rehype-highlight"
+import remarkMath from "remark-math"
+import rehypeKatex from "rehype-katex"
 import { getPostFromSlug, getSlugs, PostMeta } from "@/src/api"
 import YouTube from "@/src/components/youtube"
 import "highlight.js/styles/github.css"
@@ -39,7 +41,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       rehypePlugins: [
         rehypeSlug,
         [rehypeAutolinkHeadings, { behavior: "wrap" }],
-        rehypeHighlight
+        rehypeHighlight,
+        rehypeKatex,
+        remarkMath,
       ]
     }
   })
