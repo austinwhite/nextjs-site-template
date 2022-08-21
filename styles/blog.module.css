@@ -33,7 +33,20 @@
   text-align: left;
   margin-right: auto;
   padding-left: 2rem;
-  max-width: 30em;
+  max-width: 22.5em;
+  min-width: 22.5em;
+}
+
+@media screen and (max-width: 570px) {
+  .tags-list-container {
+    display: none;
+  }
+
+  .posts-list-container {
+    padding: 0em 1em;
+    margin-left: auto;
+    min-width: 0em;
+  }
 }
 
 .list {

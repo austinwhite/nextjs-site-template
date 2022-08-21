@@ -10,10 +10,9 @@
   margin: auto 1.25rem;
 }
 
-@media screen and (max-width:990px) {
+@media screen and (max-width:425px) {
   .container {
-    flex-basis: 100%;
-    margin: 7.5rem auto auto;
+    margin: 25% auto auto auto;
     flex-direction: column;
   }
 }

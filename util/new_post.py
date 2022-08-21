@@ -32,6 +32,10 @@ if __name__ == "__main__":
     print("created dir: " + dir_path)
     os.mkdir(dir_path)
 
+    with open(dir_path + "/.gitignore", 'a') as f:
+        f.write("# this file enables it's parent directory")
+        f.write(" to be tracked even when it's empty\n")
+
     with open(file_path, 'a') as f:
         f.write("---\n")
         f.write("title: " + title + "\n")
