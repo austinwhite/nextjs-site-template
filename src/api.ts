@@ -34,10 +34,13 @@ export const getAllPosts = (): Post[] => {
   const posts = getSlugs()
     .map(slug => getPostFromSlug(slug))
     .sort((a, b) => {
-      if (a.meta.date > b.meta.date) return -1
-      if (a.meta.date < b.meta.date) return 1
+      let a_date_epoc = new Date(a.meta.date)
+      let b_date_epoc = new Date(b.meta.date)
+
+      if (a_date_epoc > b_date_epoc) return -1
+      if (a_date_epoc < b_date_epoc) return 1
       return 0
-  }).reverse()
+  })
   return posts
 }
 
