@@ -10,6 +10,25 @@ excerpt: [excerpt]
 ---
 
 ## What is KNN?
+The K-Nearest Neighbors algorithm is a supervised learning method used for 
+classification and regression. The input is the $k$ closest training samples
+in a data set. The output is class membership.
+
+M amount of classification objects are mapped onto N-Dimensional euclidean space.
+When new data is recieved the classifer will determine it's $k$ nearest neighbors.
+Each neighbor casts a votes of $\frac{1}{k}$ for it's class. The new data is 
+classifed as the class that cast a plurality of the votes.
+
+### Chosing the Optimal $k$ Value
+Chosing the correct $k$ value can make a large differnece in the accuracy of
+your classifier. A $k$ value that's too small is susceptible to outliers, 
+a $k$ value that's too large risks being outvoted by the wrong selection group.
+In general a smaller $k$ value is more optimal for structured data sets
+and a larger $k$ value is more optimal for noisy data sets.
+
+You can find an optimal $k$ value via trial and error or use tools such as 
+sklearns [GridSearchCV](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html)
+method.
 
 ## The Underlying Math
 Understanding the math behind this classifier isn't strictly neccessary but
@@ -95,5 +114,92 @@ d(p, q) =\sum_{i=0}^{n}\sqrt{(p_{i} - q_{i})^{2}}
 $$
 
 ## Implementing KNN
+Basic python knowledge is assumed here. Full source code can be found on my
+[GitHub](https://github.com/austinwhite/k-nearest-neighbors)
+
+This implementation follows the conventions of the
+[scikit-learn KNeighborsClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html)
+
+<br/>
+
+In a file KNN.py, start by importing numpy and creating the class KNN.
+Initialize the class with a k value.
+
+```python
+import numpy as nu
+
+class KNN:
+    __init__(self, k=3):
+        self.k = k
+```
+
+The fit method load data into the classifier. The scikit-learn implementation 
+is much more sophisticated, ours just stores $X$ and $y$ as instance variables.
+
+```python
+def fit(self, X, y):
+    self.X_train = X
+    self.y_train = y
+```
+
+All that remains is the predict method. It's here that the distances are 
+calculated and the nearest neighbors cast their votes.
+
+```python
+def predict(self, X):
+        y_pred = [self._predict(x) for x in X]
+        return np.array(y_pred)
+
+    def _predict(self, x):
+        distances = [euclidean_distance(x, x_train) for x_train in self.X_train]
+
+        k_indices = np.argsort(distances)[:self.k]
+        k_nearest_labels = [self.y_train[i] for i in k_indices]
+
+        most_common = Counter(k_nearest_labels).most_common(1)
+        return most_common[0][0]
+```
+
+The _predict method calls euclidian_distance(), we'll need to define that as well.
+It doesn't need to be contained within the class, you can add it to a utility 
+file or just define it in the KNN.py file outside of the class.
+
+```python
+def euclidean_distance(p, q):
+    return np.sqrt(np.sum((p - q)**2))
+```
 
 ## Testing the Implementation
+We'll use the iris dataset from scikit-learn.
+
+```python
+import numpy as np
+from sklearn import datasets
+from sklearn.model_selection import train_test_split
+from KNN import KNN
+
+# load the dataset
+# create data features matrix and target vector
+iris = datasets.load_iris()
+X, y = iris.data, iris.target
+
+# segment testing and training data
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=1234
+)
+
+# initialize classifier
+knn = KNN(k=3)
+
+# pass data into classifier
+knn.fit(X_train, y_train)
+
+# use classifier
+predict = knn.predict(X_test)
+
+# evaluate accuracy
+acc = np.sum(predict == y_test) / len(y_test)
+
+print(acc)
+# output: 1.0
+```
