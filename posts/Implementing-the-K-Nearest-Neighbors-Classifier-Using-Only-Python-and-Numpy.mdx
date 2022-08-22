@@ -9,4 +9,91 @@ date: 2022-08-21
 excerpt: [excerpt]
 ---
 
-in progress. pushed for testing purposes
+## What is KNN?
+
+## The Underlying Math
+Understanding the math behind this classifier isn't strictly neccessary but
+if you're serious about this domain, it's worth your time to dig a little
+deeper. A basic understanding of algebra and calculus is assumed here.
+
+### The Euclidean Distance
+The [euclidean distance](https://en.wikipedia.org/wiki/Euclidean_distance)
+is the distance between 2 points in $N$-Dimensional
+[euclidean space](https://en.wikipedia.org/wiki/Euclidean_space).
+Imagine a sheet of graph paper where a horizontal line represents an $X$-Axis and an intersecting vertical
+line represents a $Y$-Axis. This is 2-Dimensional euclydian space. Now imagine
+a line perpendicular to the paper going through the exact point where the
+$X$ and $Y$ axis intersect, this is the $Z$-Axis. Together $X$, $Y$, and $Z$ form
+3-Dimensional euclidean space.
+
+After this point direct visualazation becomes impossible however you can
+continue adding additional dimensions indefinitly. An $N$-dimensional 
+euclidian space is a euclidean space with $N$ dimensions where $N$ is any positive integer.
+
+Euclidian distnace is defined as:
+$$
+d(p, q) =\sum_{i=0}^{n}\sqrt{(p_{i} - q_{i})^{2}}
+$$
+
+At it's core, this is really just a generalized form of the pythagorian
+theorem: 
+$
+c^{2} = a^{2} + b^{2}
+$
+Isolate $c$ and you have: 
+$
+c = \sqrt{a^{2} + b^{2}}
+$
+
+<Image src="/posts/Implementing-the-K-Nearest-Neighbors-Classifier-Using-Only-Python-and-Numpy/pythagorian.png"
+    width={550*.4}
+    height={550*.4}
+/>
+
+Evaluating for $c$ in the above diagram you have:
+$
+c = \sqrt{(3)^{2} + (4)^{2}} \Longrightarrow \sqrt{25} \Longrightarrow \textbf{5}
+$
+
+If you were to plot the indicies that comprise the triangle above you can 
+generalize the pythagorian theorem even further into what's refferd to as the
+distance formula. 
+$
+d = \sqrt{(x_{2} - x_{1})^{2} + (y_{2} - y_{1})^{2}}
+$
+
+By differencing the corrisponding $x$ and $y$ points before squaring, you're 
+effectivly translating the triangled indicies to the $X$ and $Y$ axis. After 
+that the evaluation contunues as it did in the pythagorian theorem.
+
+<Image src="/posts/Implementing-the-K-Nearest-Neighbors-Classifier-Using-Only-Python-and-Numpy/distancePlot.png"
+    width={550*.55}
+    height={550*.55}
+/>
+
+Solving for $d$ from the diagram above you get: 
+$
+d = \sqrt{(4 - 1)^{2} + (0 - -4)^{2}} \Longrightarrow \sqrt{(3)^{2} + (4)^{2}} \Longrightarrow \sqrt{25} \Longrightarrow \textbf{5}
+$
+
+Note: it doesn't matter which order to take the difference in the sections 
+being squred. Squaring the values and then taking the square root has the effect 
+of leaving any positive numbers as they are and taking the absolute value of
+any negative number.
+
+So far we've been evaluating distances in 2-Dimensions, we can generalize this 
+to higher dimensions:
+
+$
+d(p,q) = \sqrt{(p_{1} - q_{1})^{2} + (p_{2} - q_{2})^{2} + ... + (p_{i} - q_{i})^{2} + ... + (p_{n} - q_{n})^{2}}
+$
+
+<br/>
+Expresing this using sigma notation you get the euclidian distance forumala.
+$$
+d(p, q) =\sum_{i=0}^{n}\sqrt{(p_{i} - q_{i})^{2}}
+$$
+
+## Implementing KNN
+
+## Testing the Implementation

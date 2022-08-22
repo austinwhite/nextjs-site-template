@@ -29,8 +29,8 @@ if __name__ == "__main__":
         print("error: this post already exists.")
         exit(1)
 
-    print("created dir: " + dir_path)
     os.mkdir(dir_path)
+    print("created dir: " + dir_path)
 
     with open(dir_path + "/.gitignore", 'a') as f:
         f.write("# this file enables it's parent directory")
