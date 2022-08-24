@@ -13,10 +13,6 @@ export default function TopNav() {
         </div>
         
         <div className={ navStyles["top-nav-right"] }>
-          <Link href="/blog">
-            <a>Blog</a>
-          </Link>
-
           <Link href="/contact">
             <a>Contact</a>
           </Link>
