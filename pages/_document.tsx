@@ -14,6 +14,7 @@ class MyDocument extends Document {
           <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png"/>
           <link rel="manifest" href="/favicon/site.webmanifest"/>
           <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.0/dist/katex.min.css"/>
+
         </Head>
         <body>
           <Main />
