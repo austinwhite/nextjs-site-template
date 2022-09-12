@@ -61,7 +61,7 @@ export default function Blog( { posts, tags }: { posts: PostMeta[], tags: string
   return (
     <div className={ utilStyles["page-container"] }>
       <Head>
-        <title>Blog</title>
+        <title>Austin White</title>
       </Head>
       <div className={ blogStyles["posts-selection-container"] }>
         <div className={ blogStyles["tags-list-container"]}>

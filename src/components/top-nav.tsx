@@ -17,6 +17,11 @@ export default function TopNav() {
             <a>Contact</a>
           </Link>
         </div>
+        <div className={ navStyles["top-nav-right"] }>
+          <Link href="/projects">
+            <a>Projects</a>
+          </Link>
+        </div>
       </div>
     </div>
   )
